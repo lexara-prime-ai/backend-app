@@ -22,17 +22,16 @@ const SERVER = http.createServer((request, response):void => {
         response.end('Server response...');
         return;
     } else if (request.url === '/users') {
-        fetch('https://dummyjson.com/users').then((response) => {
-            return response.json();
-        }).then((data) => {
-            response.writeHead(200, {
-                'Content-Type': 'text/plain',
-                'Access-Control-Allow-Origin': origin
-            });
-            response.end(data);
-        }).catch((error) => {
-            console.error(`${error.name}\t${error.message}`);
-        })
+        // https://dummyjson.com/users
+       async function fetchContent() {
+        let response = await fetch('https://dummyjson.com/users');
+
+        if (response.status === 200) {
+            let data = await response.json();
+            console.log(data);
+        };
+       }
+       fetchContent();
     }
 
 }).listen(PORT, (): void => {
