@@ -24,14 +24,22 @@ const SERVER = http.createServer((request, response):void => {
     } else if (request.url === '/users') {
         // https://dummyjson.com/users
        async function fetchContent() {
-        let response = await fetch('https://dummyjson.com/users');
+        let response = await fetch('http://localhost:8000/data');
 
         if (response.status === 200) {
             let data = await response.json();
             console.log(data);
+            // HANDLE DATA
         };
        }
+
+       response.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': origin
+       });
+
        fetchContent();
+       response.end('Success : Data received...');
     }
 
 }).listen(PORT, (): void => {

@@ -1,0 +1,13 @@
+{
+  "name": "remoteserver",
+  "version": "1.0.0",
+  "description": "Remote server butt",
+  "main": "remote.ts",
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "start:dev": "ts-node ./src/remote.ts",
+    "start": "npm run build && node ./build/remote.js"
+  },
+  "author": "Japheth Yahuma",
+  "license": "ISC"
+}
